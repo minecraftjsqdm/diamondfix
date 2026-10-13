@@ -1,0 +1,41 @@
+modLoader="javafml" #mandatory
+loaderVersion="${loader_version_range}" #mandatory
+license="${mod_license}"
+
+[[mods]] #mandatory
+modId="${mod_id}" #mandatory
+version="${mod_version}" #mandatory
+displayName="${mod_name}" #mandatory
+authors="${mod_authors}" #optional
+description='''${mod_description}'''
+
+[[dependencies.${mod_id}]]
+    modId="neoforge"
+    type="required"
+    versionRange="${neo_version_range}"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="minecraft"
+    type="required"
+    versionRange="${minecraft_version_range}"
+    ordering="NONE"
+    side="BOTH"
+
+# 首个修复项针对的正是上游 oritech_steel_tools。声明为可选 + AFTER：
+# 该模组存在时在本模组之前加载；缺失时本模组仍可独立加载（只是补的物品无人引用）。
+[[dependencies.${mod_id}]]
+    modId="oritech_steel_tools"
+    type="optional"
+    versionRange="[0,)"
+    ordering="AFTER"
+    side="BOTH"
+
+# oritech 本体（钢的原料来源），同样可选。
+[[dependencies.${mod_id}]]
+    modId="oritech"
+    type="optional"
+    versionRange="[0,)"
+    ordering="AFTER"
+    side="BOTH"
